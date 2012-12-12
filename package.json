@@ -2,9 +2,9 @@
   "name": "threejs-template",
   "description": "",
   "version": "0.1.0",
-  "dependencies": {
-    "grunt-reload": "",
-    "grunt-contrib-coffee": ""
-  },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "grunt-contrib-coffee": "~0.3.2",
+    "grunt-reload": "~0.2.0"
+  }
 }
