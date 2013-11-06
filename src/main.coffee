@@ -30,23 +30,36 @@ class App
     @stats = new Stats()
     container.appendChild(@stats.domElement)
 
+    @composer = new THREE.EffectComposer(@renderer)
+    @composer.addPass(new THREE.RenderPass(@scene, @camera))
+    effect = new THREE.ShaderPass(THREE.DotScreenShader)
+    effect.uniforms['scale'].value = 4
+    @composer.addPass(effect)
+
+    effect = new THREE.ShaderPass(THREE.RGBShiftShader)
+    console.log effect.uniforms
+    effect.uniforms['amount'].value *= 0.3
+    effect.renderToScreen = true
+    @composer.addPass(effect)
+
     window.addEventListener 'resize', =>
       @camera.aspect = window.innerWidth / window.innerHeight
       @camera.updateProjectionMatrix()
       @renderer.setSize(window.innerWidth, window.innerHeight)
+      @composer.setSize(window.innerWidth, window.innerHeight)
 
 
   initObjects: =>
     @scene.add(new THREE.Mesh(
       new THREE.SphereGeometry(100, 40, 20)
-      new THREE.MeshLambertMaterial(color: 0xffffff, wireframe: true)
+      new THREE.MeshLambertMaterial(color: 0xffffff, wireframe: false)
       ))
 
 
   animate: =>
     requestAnimationFrame(@animate)
     @controls.update()
-    @renderer.render(@scene, @camera)
+    @composer.render()
     @stats.update()
 
 
