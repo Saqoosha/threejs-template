@@ -37,7 +37,6 @@ class App
     @composer.addPass(effect)
 
     effect = new THREE.ShaderPass(THREE.RGBShiftShader)
-    console.log effect.uniforms
     effect.uniforms['amount'].value *= 0.3
     effect.renderToScreen = true
     @composer.addPass(effect)
@@ -60,6 +59,7 @@ class App
     requestAnimationFrame(@animate)
     @controls.update()
     @composer.render()
+#    @renderer.render(@scene, @camera)
     @stats.update()
 
 
