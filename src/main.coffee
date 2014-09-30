@@ -1,3 +1,9 @@
+Detector = require('Detector')
+require('../libs/OrbitControls.js')
+Stats = require('stats.js')
+
+
+
 class App
 
   constructor: ->

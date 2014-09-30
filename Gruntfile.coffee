@@ -5,7 +5,6 @@ module.exports = (grunt) ->
     browserify:
       'dist/bundle.js': ['src/main.coffee']
       options:
-        transform: ['coffeeify']
         debug: true
 
     watch:
