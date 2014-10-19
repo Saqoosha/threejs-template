@@ -5,7 +5,9 @@ module.exports = (grunt) ->
     browserify:
       'dist/bundle.js': ['src/main.coffee']
       options:
-        debug: true
+        watch: true
+        browserifyOptions:
+          debug: true
 
     watch:
       html:
@@ -13,8 +15,7 @@ module.exports = (grunt) ->
         options:
           livereload: true
       scripts:
-        files: ['src/*.coffee']
-        tasks: ['browserify']
+        files: 'dist/bundle.js'
 
     connect:
       server:
