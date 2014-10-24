@@ -60,4 +60,3 @@ if Detector.webgl
   new App()
 else
   Detector.addGetWebGLMessage()
-
