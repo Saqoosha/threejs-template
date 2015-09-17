@@ -9,20 +9,22 @@ module.exports = (grunt) ->
         browserifyOptions:
           debug: true
 
-    watch:
-      html:
-        files: ['dist/*']
-        options:
-          livereload: true
-      scripts:
-        files: 'dist/bundle.js'
+    # watch:
+    #   html:
+    #     files: ['dist/*']
+    #   scripts:
+    #     files: 'dist/bundle.js'
 
-    connect:
-      server:
+    browserSync:
+      dev:
+        bsFiles:
+          src: ['dist/**/*']
         options:
-          base: 'dist'
+          # watchTask: true
+          server: 'dist'
+          open: false
 
-  grunt.loadNpmTasks('grunt-contrib-connect')
-  grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-browserify')
-  grunt.registerTask('default', ['connect', 'browserify', 'watch'])
+  # grunt.loadNpmTasks('grunt-contrib-watch')
+  grunt.loadNpmTasks('grunt-browser-sync')
+  grunt.registerTask('default', ['browserify', 'browserSync'])
